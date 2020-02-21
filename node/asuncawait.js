@@ -1,49 +1,50 @@
 verifyUser = (username, password) => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            if (username === 'rashik' && password === 'reddy') {
-                console.log('success');
-                resolve('rashik');
-            } else {
-                console.log('failure');
-                reject('failure');
-            }
-        });
-    });
+    try {
+        if (username === 'rashik' && password === 'reddy') {
+            console.log('success');
+            return username;
+        } else {
+            console.log('failure');
+            throw new Error('Username or Password not matched');
+        }
+    } catch (error) {
+        console.log(error);
+    }
 }
 
+
 getRoles = (username) => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            if (username === 'rashik') {
-                console.log('success');
-                resolve({
-                    "admin": 1,
-                    "HR": 0
-                });
-            } else {
-                console.log('failure');
-                reject('failure');
-            }
-        });
-    });
+    try {
+        if (username === 'rashik') {
+            console.log('success');
+            return ({
+                "admin": 1,
+                "HR": 0
+            });
+        } else {
+            console.log('failure');
+            throw new Error('Failure at roles');
+        }
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 checkUserAccess = (roles) => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            if (roles.admin === 1) {
-                console.log('success');
-                resolve('success');
-            } else if (roles.HR === 1) {
-                console.log('success');
-                resolve('success');
-            } else {
-                console.log('failure');
-                reject('failure');
-            }
-        });
-    });
+    try {
+        if (roles.admin === 1) {
+            console.log('success');
+            return 'success';
+        } else if (roles.HR === 1) {
+            console.log('success');
+            return 'success';
+        } else {
+            console.log('failure');
+            throw new Error('failed at check users');
+        }
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 authenticateUser = async (username, password) => {
